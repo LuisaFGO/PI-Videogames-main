@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    Plataformas: {
+    plataformas: {
       type: DataTypes.STRING,
       allowNull: false,
     },
