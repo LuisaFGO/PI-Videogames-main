@@ -1,11 +1,29 @@
-const {createGameDb} = require("../controllers/videogamesController")
+const {createGameDb, getVgById, getGameByNombre, getAllGame} = require("../controllers/videogamesController")
 
-const getVideogamesHandler = (req, res)=>{
-    res.status(200).send("Aquí están los videojuegos")
+const getVideogamesHandler = async (req, res)=>{
+    const {nombre} = req.query;
+    try {
+        if(nombre){
+            const vgByNombre = await getGameByNombre(nombre);
+            res.status(200).json(vgByNombre);
+        }else{
+            const response = await getAllGame();
+            res.status(200).json(response);
+        }    
+    } catch (error) {
+        res.status(400).json({error:error.message});
+    }
 };
 
-const getVgDetailHandler = (req, res)=>{
-    res.status(200).send("Aquí está el detalle de id")
+const getVgDetailHandler = async (req, res)=>{
+    const {id} = req.params;
+    const source = isNaN(id) ? "bd" : "api";
+    try {
+       const response = await getVgById(id, source); 
+       res.status(200).json(response);
+    } catch (error) {
+        res.status(400).json({error:error.message});
+    }
 };
 
 const createVgHandler = async (req, res)=>{
@@ -14,7 +32,7 @@ const createVgHandler = async (req, res)=>{
         const response = await createGameDb(nombre, descripcion, plataformas, imagen, fechaLanzamiento, rating);
         res.status(200).json(response);
     } catch (error) {
-        res.status(400).json({error:error.message})
+        res.status(400).json({error:error.message});
     }
 };
 
