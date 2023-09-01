@@ -1,6 +1,5 @@
 const axios = require('axios');
-const  {Videogames} = require("../db");
-const {Genres} = require('../models/Genres')
+const  {Videogames, Genres} = require("../db");
 const { API_KEY } = process.env;
 const {cleanGames, addGenreDb} = require('../utils/index');
 const { where } = require('sequelize');
