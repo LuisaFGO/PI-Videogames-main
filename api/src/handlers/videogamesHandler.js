@@ -27,9 +27,9 @@ const getVgDetailHandler = async (req, res)=>{
 };
 
 const createVgHandler = async (req, res)=>{
-    const {nombre, descripcion, plataformas, imagen, fechaLanzamiento, rating} = req.body;
+    const {nombre, descripcion, plataformas, imagen, fechaLanzamiento, rating, genres} = req.body;
     try {
-        const response = await createGameDb(nombre, descripcion, plataformas, imagen, fechaLanzamiento, rating);
+        const response = await createGameDb(nombre, descripcion, plataformas, imagen, fechaLanzamiento, rating, genres);
         res.status(200).json(response);
     } catch (error) {
         res.status(400).json({error:error.message});
