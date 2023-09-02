@@ -10,7 +10,7 @@ const createGameDb = async (nombre, descripcion, plataformas, imagen, fechaLanza
  let gameDb = await Genres.findAll({
     where: {nombre: genres}
 })
-newGame.addGenre(gameDb);
+return newGame.addGenres(gameDb);
 };
 
 const getVgById = async(id, source) =>{
@@ -40,8 +40,9 @@ const getGameByNombre = async(nombre) =>{
     .data.results;
     const gamesApi = cleanGames(getNombre);
     const gamesFilter = gamesApi.filter((game) => game.nombre.toLowerCase().includes(nombre.toLowerCase()));;
-
-    return [...gamesFilter, ...gameBd];
+    const result = [...gamesFilter, ...gameBd];
+    if(!result.length) return { message: `Dont found a videogame with name:🥴 '${nombre}' 🥴.` };
+    else return result;
 };
 
 module.exports ={

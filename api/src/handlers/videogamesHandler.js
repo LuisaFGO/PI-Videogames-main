@@ -31,7 +31,7 @@ const createVgHandler = async (req, res)=>{
     try {
         if(!nombre||!descripcion||!plataformas||!imagen||!fechaLanzamiento||!rating||!genres) throw Error("Missing data 🤷‍♀️");
         const response = await createGameDb(nombre, descripcion, plataformas, imagen, fechaLanzamiento, rating, genres);
-        res.status(200).json({message: 'Create Done 🎉'});
+        res.status(200).json({message: 'Create Done 🎉 '});
     } catch (error) {
         res.status(400).json({error:error.message});
     }
