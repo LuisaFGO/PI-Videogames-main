@@ -4,7 +4,7 @@ import Detail from './View/detailPage/detail.component';
 import Form from './View/formPage/form.component';
 import Home from './View/homePage/home.component';
 
-import './App.css';
+
 
 function App() {
   return (

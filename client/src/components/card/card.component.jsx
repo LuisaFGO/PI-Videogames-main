@@ -2,7 +2,7 @@ import './card.styles.css';
 
 function Card() {
     return (
-      <div >
+      <div className='card-container'>
        <h2>Nombre:</h2>
        <p>Imagen:</p>
        <p>Genres:</p>

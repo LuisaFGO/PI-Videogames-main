@@ -4,7 +4,7 @@ import './cards.styles.css';
 
 function Cards() {
     return (
-      <div >
+      <div className='cards-list'>
         < Card />
         < Card />
         < Card />
