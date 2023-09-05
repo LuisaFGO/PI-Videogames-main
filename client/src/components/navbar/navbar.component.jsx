@@ -1,11 +1,11 @@
 import './navbar.styles.css';
 
-function Navbar() {
+function Navbar({handleChange, handleSubmit}) {
     return (
       <div className='search-box'>
-        <form >
+        <form onChange={handleChange}>
         <input placeholder='Search of game' type='search'/>  
-        <button type="submit">Buscar</button>
+        <button type="submit" onClick={handleSubmit}>Buscar</button>
         </form>
       </div>
     );

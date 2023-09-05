@@ -1,6 +1,6 @@
-import {GET_VIDEOGAMES} from '../actions';
+import {GET_VIDEOGAMES, GET_BY_NAME} from '../actions';
 
-let initialState = {allVideogames:[], genres:[]};
+let initialState = {allVideogames:[], gamesCopy:[], genres:[]};
 
 function rootReducer(state = initialState, action){
    switch(action.type){
@@ -8,9 +8,15 @@ function rootReducer(state = initialState, action){
         return{
             ...state,
             allVideogames: action.payload,
+            gamesCopy: action.payload,
+        }
+    case GET_BY_NAME:
+        return{
+            ...state,
+            allVideogames: action.payload,
         }
     default:
-        return state
+        return state;
    }
 };
 
