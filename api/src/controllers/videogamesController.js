@@ -7,10 +7,16 @@ const { where } = require('sequelize');
 
 const createGameDb = async (nombre, descripcion, plataformas, imagen, fechaLanzamiento, rating, genres) =>{
  const newGame = await Videogames.create({nombre, descripcion, plataformas, imagen, fechaLanzamiento, rating});
- let gameDb = await Genres.findAll({
-    where: {nombre: genres}
-})
-return newGame.addGenres(gameDb);
+ const genre = Genres
+// await newGame.addGenres();
+//  const result = await Videogames.findOne({
+//     where: { nombre: genres },
+//     include: Genres
+//   });
+//  let gameDb = await Genres.findAll({
+//     where: {nombre: genres}
+// })
+console.log(Genres)
 };
 
 const getVgById = async(id, source) =>{
