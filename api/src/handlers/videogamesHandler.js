@@ -1,10 +1,10 @@
-const {createGameDb, getVgById, getGameByNombre, getAllGame} = require("../controllers/videogamesController")
+const {createGameDb, getVgById, getGameByName, getAllGame} = require("../controllers/videogamesController")
 
 const getVideogamesHandler = async (req, res)=>{
-    const {nombre} = req.query;
+    const {name} = req.query;
     try {
-        if(nombre){
-            const vgByNombre = await getGameByNombre(nombre);
+        if(name){
+            const vgByNombre = await getGameByName(name);
             res.status(200).json(vgByNombre);
         }else{
             const response = await getAllGame();
@@ -27,10 +27,10 @@ const getVgDetailHandler = async (req, res)=>{
 };
 
 const createVgHandler = async (req, res)=>{
-    const {nombre, descripcion, plataformas, imagen, fechaLanzamiento, rating, genres} = req.body;
+    const {name, description, platforms, background_image, released, rating, genres} = req.body;
     try {
-        if(!nombre||!descripcion||!plataformas||!imagen||!fechaLanzamiento||!rating||!genres) throw Error("Missing data 😬");
-        const response = await createGameDb(nombre, descripcion, plataformas, imagen, fechaLanzamiento, rating, genres);
+        if(!name||!description||!platforms||!background_image||!released||!rating||!genres) throw Error("Missing data 😬");
+        const response = await createGameDb(name, description, platforms, background_image, released, rating, genres);
         res.status(200).json({message: 'Create Done 🎉 '});
     } catch (error) {
         res.status(400).json({error:error.message});

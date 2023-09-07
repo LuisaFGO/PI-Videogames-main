@@ -5,33 +5,23 @@ const cleanGames = (arr) =>
     const platforms = [game.platforms, game.parent_platforms]
           .flatMap(platform => platform.map(p => p.platform.name))
           .filter((name, index, arr) => arr.indexOf(name) === index);
-          //const genres = game.genres.map(g =>{g.id, g.name});
+          const genres = game.genres.map(g =>{return { name: g.name}});
     return{
         id: game.id,
-        nombre: game.name,
-        descripcion: game.description,
-        plataformas: platforms,
-        imagen: game.background_image,
-        fechaLanzamiento: game.released,
+        name: game.name,
+        description: game.description,
+        platforms: platforms,
+        background_image: game.background_image,
+        released: game.released,
         rating: game.rating,
-        genres: game.genres,
+        genres: genres,
         created: false
     }
 });
 
-const addGenreDb = async (arr) =>{
-    return await arr.findAll({
-        include:{
-          model: Genres,
-          attributes: ['nombre'],
-          through: {
-            attributes: [], // A Traves de la tabla atributes. 
-        }
-    } 
-})
-}
+
 
 module.exports = {
     cleanGames,
-    addGenreDb,
+    
 }

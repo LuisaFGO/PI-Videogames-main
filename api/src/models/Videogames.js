@@ -9,23 +9,23 @@ module.exports = (sequelize) => {
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
-    nombre: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    descripcion: {
+    description: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    plataformas: {
+    platforms: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    imagen: {
+    background_image: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    fechaLanzamiento: {
+    released: {
       type: DataTypes.DATE,
       allowNull: false,
     },
