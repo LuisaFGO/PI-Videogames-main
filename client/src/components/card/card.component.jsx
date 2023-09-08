@@ -1,19 +1,23 @@
-import {Link} from 'react-router-dom';
-import './card.styles.css';
+import { Link } from "react-router-dom";
+import "./card.styles.css";
 
-function Card({game}) {
+function Card({ game }) {
+ const id = game.id;
+  return (
+    <div className="card-container">
+      <Link to={`home/${id}`}>
+        <p>{id}</p>
+        <img src={game.background_image} alt="dog" width="200" />
+        <h2>{game.name}</h2>
+        {game.genresName.map((el) => (
+              <li key={el}>{el}</li>
+            ))}
+        {/* {game.genres.map((g) => {
+          return <p>{g.name}</p>;
+        })} */}
+      </Link>
+    </div>
+  );
+}
 
-    const {nombre, imagen, genres, id} = game;
-
-    return (
-      <div className='card-container'>
-       <Link to={`/home/${id}`}>
-         <h2>{nombre}</h2>
-         <p>{imagen}</p>
-         <p>{genres}</p>
-         </ Link>
-       </div>
-    );
-  }
-  
-  export default Card;
+export default Card;

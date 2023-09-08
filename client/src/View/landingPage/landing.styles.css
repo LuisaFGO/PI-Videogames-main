@@ -1,0 +1,63 @@
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
+.landing{
+    background-image: url(../../img/landing.jpg);
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+}
+
+.p{
+   margin-bottom: 25px;
+   font-family: Comic Sans MS; 
+   font-weight:bold; 
+   font-size: 30px; 
+   color:  #331740; 
+   text-shadow: 0 1px 0 #ddd, 0 2px 0 #ccc, 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 0 #acacac, 0 6px 1px rgba(0,0,0,0.1), 0 0 5px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.3), 0 3px 5px rgba(0,0,0,0.2), 0 5px 10px rgba(0,0,0,0.15), 0 10px 10px rgba(0,0,0,0.2), 0 20px 20px rgba(0,0,0,0.15);
+}
+
+.center{
+    position: relative;
+    top: 50%;
+}
+
+button{
+    background: #331740;
+    color: #b33771;
+    border:none;
+    position:relative;
+    height:55px;
+    font-size:1.6em;
+    padding:0 2em;
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+  }
+  button:hover{
+    background: linear-gradient(to left top, #c32c71 50%, #b33771 50%);
+    color:#331740;
+  }
+  button:before,button:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background: #331740;
+    transition:400ms ease all;
+  }
+  button:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+  }
+  button:hover:before,button:hover:after{
+    width:100%;
+    transition:800ms ease all;
+  }

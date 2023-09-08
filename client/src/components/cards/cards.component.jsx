@@ -2,14 +2,20 @@ import Card from '../card/card.component';
 
 import './cards.styles.css';
 
-function Cards({allGames}) {
+function Cards({videogames}) {
 
-  const gamesList = allGames;
+  const gamesList = videogames;
 
     return (
       <div className='cards-list'>
-        {gamesList?.map((game) =>(
-          < Card game={game}/>
+        {gamesList?.map(game =>(
+          < Card 
+          key={game.id}
+          id = {game.id}
+          image={game.background_image}
+          name={game.name}
+          genres={game.genres}
+          />
         ))};
       </div>
     );
