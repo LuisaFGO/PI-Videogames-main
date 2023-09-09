@@ -3,7 +3,17 @@
     border: none;
     outline: none;
     padding: 10px;
-    width: 150px;
+    width: 100%;
     line-height: 30px;
     margin-bottom: 30px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+}
+
+.form{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
 }

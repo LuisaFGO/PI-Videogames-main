@@ -8,6 +8,7 @@ body {
     background: linear-gradient( #331740,   #a4549d );
     text-align: center;
     color:#210c2b;
+    width: 100vw;
   }
 .home {
    display: flex;
