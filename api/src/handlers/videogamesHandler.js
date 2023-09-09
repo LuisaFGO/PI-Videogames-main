@@ -3,6 +3,7 @@ const {createGameDb, getVgById, getGameByName, getAllGame} = require("../control
 const getVideogamesHandler = async (req, res)=>{
     const {name} = req.query;
     try {
+        console.log(req.query)
         if(name){
             const vgByNombre = await getGameByName(name);
             res.status(200).json(vgByNombre);
