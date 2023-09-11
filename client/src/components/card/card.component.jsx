@@ -5,12 +5,15 @@ function Card({ game }) {
  const id = game.id;
   return (
     <div className="card-container">
-      <Link to={`home/${id}`}>
-        <img src={game.background_image} alt="dog" width="200" />
+      <Link to={`home/${id}`} className='link'>
+        <img src={game.background_image} alt="dog" width="130" className="img"/>
         <h2>{game.name}</h2>
+        <div>
+        <h4>Genres:</h4>
         {game.genres.map((g) => {
-          return <p>{g.name}</p>;
+          return <p> ★ {g.name}</p>;
         })}
+        </div>
       </Link>
     </div>
   );

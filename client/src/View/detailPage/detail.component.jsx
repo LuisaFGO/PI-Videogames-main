@@ -1,25 +1,53 @@
-import { useEffect} from 'react';
-import { useDispatch, useSelector} from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
-import {getByID} from '../../redux/actions/index';
+import { getByID } from "../../redux/actions/index";
 
-import './detail.styles.css';
-import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import "./detail.styles.css";
 
 function Detail() {
   const dispatch = useDispatch();
-  const videogame = useSelector((state)=> state.videogame);
+  const videogame = useSelector((state) => state.videogame);
   const params = useParams();
 
-  useEffect(()=>{
-    dispatch(getByID(params.id))
-  },[dispatch])
+  useEffect(() => {
+    dispatch(getByID(params.id));
+  }, [dispatch]);
 
-    return (
-      <div className='detail'>
-        <p>DetailPage</p>
+  return (
+    <div className="detail">
+      <div>
+        <div className="title">
+          <h2 >{videogame.id}</h2>
+          <h1 >{videogame.name}</h1>
+        </div>
+        <img src={videogame.background_image} alt="PhotoDetail" width="55%" className="img"/>
+        <div>
+          <h4>Platforms</h4>
+          <p>{videogame.platforms}</p>
+        </div>
+        <div className="description">
+          <h4>Description:</h4>
+          <p className="descrip_text">{videogame.description}</p>
+        </div>
+        <p>
+          <strong>Fecha de Lanzamiento</strong>: {videogame.released}
+        </p>
+        <p>
+          <strong>Rating</strong>: ★ {`${videogame.rating}`}
+        </p>
+        <div>
+          <h4>Genres</h4>
+          <p>{videogame.genres}</p>
+        </div>
+        <NavLink to="/home">
+          <button className="btn">Volver</button>
+        </NavLink>
       </div>
-    );
-  }
-  
-  export default Detail;
+    </div>
+  );
+}
+
+export default Detail;
