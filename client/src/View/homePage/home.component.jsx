@@ -12,6 +12,16 @@ function Home() {
 
   const dispatch = useDispatch();
   const videogames = useSelector((state)=> state.gamesCopy);
+
+  // const [items, setItems] = useState([...videogames].splice(0, 15));
+
+  // function nexHandler (){
+  //   console.log('next')
+  // }
+
+  // function prevHandler(){
+  //   console.log('prev')
+  // }
   
   const [searchString, setsearchString] = useState("");
 

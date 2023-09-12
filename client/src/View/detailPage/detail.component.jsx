@@ -16,10 +16,15 @@ function Detail() {
     dispatch(getByID(params.id));
   }, [dispatch]);
 
+  const fecha = new Date(videogame.released)
+  const dia = fecha.getDate();
+  const moth = fecha.getMonth();
+  const year = fecha.getFullYear();
+  const released = `${dia}/${moth}/${year}`
   return (
     <div className="detail">
       <div>
-        <div className="title">
+        <div className="title_name">
           <h2 >{videogame.id}</h2>
           <h1 >{videogame.name}</h1>
         </div>
@@ -33,7 +38,7 @@ function Detail() {
           <p className="descrip_text">{videogame.description}</p>
         </div>
         <p>
-          <strong>Fecha de Lanzamiento</strong>: {videogame.released}
+          <strong>Fecha de Lanzamiento</strong>: {released}
         </p>
         <p>
           <strong>Rating</strong>: ★ {`${videogame.rating}`}

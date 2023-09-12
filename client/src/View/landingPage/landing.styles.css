@@ -28,9 +28,10 @@
 button{
     background: #331740;
     color: #b33771;
-    border:none;
+    border: none;
+    border-radius: 3px;
     position:relative;
-    height:55px;
+    height:65px;
     font-size:1.6em;
     padding:0 2em;
     cursor:pointer;

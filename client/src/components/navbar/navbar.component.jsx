@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import './navbar.styles.css';
 
 function Navbar({handleChange, handleSubmit, handleGetAll}) {
@@ -8,6 +9,9 @@ function Navbar({handleChange, handleSubmit, handleGetAll}) {
         <button type="submit">Buscar</button>
         </form>
         <button onClick={()=>handleGetAll()}>Buscar todos</button>
+        <Link to="/form">
+                <button>Create Videogame</button>
+        </Link>
       </div>
     );
   }

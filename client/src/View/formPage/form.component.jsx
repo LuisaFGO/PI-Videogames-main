@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useState } from "react";
 // import { useSelector } from 'react-redux';
 import axios from "axios";
@@ -5,12 +6,11 @@ import axios from "axios";
 import "./form.styles.css";
 
 function Form() {
-
-  // let allgenres = useSelector((state) => state.genres)  
+  // let allgenres = useSelector((state) => state.genres)
 
   const [input, setInput] = useState({
     name: "",
-    imagen: "",
+    background_image: "",
     description: "",
     platforms: "",
     released: "",
@@ -20,7 +20,7 @@ function Form() {
 
   const [errors, setErrors] = useState({
     name: "",
-    imagen: "",
+    background_image: "",
     description: "",
     platforms: "",
     released: "",
@@ -28,12 +28,12 @@ function Form() {
     genres: [],
   });
 
-//   function handleGenres(e) {
-//     setInput({
-//       ...input,
-//       genres: [...input.genres,e.target.value]
-//     })
-//  } 
+  //   function handleGenres(e) {
+  //     setInput({
+  //       ...input,
+  //       genres: [...input.genres,e.target.value]
+  //     })
+  //  }
 
   function handleOnChange(e) {
     setInput({
@@ -49,24 +49,25 @@ function Form() {
   const validate = (input) => {
     let errors = {};
     if (!input.name) {
-      errors = {...errors, name: "Name is required"}
+      errors = { ...errors, name: "Name is required" };
     } else {
-      errors = {...errors, name: ""}
-    };
+      errors = { ...errors, name: "" };
+    }
 
     if (!input.description) {
-      errors = {...errors, description: " Please Write a short description"}
+      errors = { ...errors, description: " Please Write a short description" };
     } else {
-      errors = {...errors, description: ""}
-    };
+      errors = { ...errors, description: "" };
+    }
 
     setErrors(errors);
   };
   async function handleSubmit(e) {
     e.preventDefault();
-    await axios.post("http://localhost:3001/videogames",input)
-    .then(res=>alert(res))
-    .catch(err=>alert(err))
+    await axios
+      .post("http://localhost:3001/videogames", input)
+      .then((res) => alert(res))
+      .catch((err) => alert(err));
     // setInput({
     //   name: "",
     //   imagen: "",
@@ -98,7 +99,9 @@ function Form() {
                 placeholder="Spiderman"
                 autoComplete="off"
               />
-              {errors.name && ( <p className="formulario_input_error"> {errors.name} </p> )}
+              {errors.name && (
+                <p className="formulario_input_error"> {errors.name} </p>
+              )}
               {/* <p className="formulario_input_error">Deben tener un nombre</p> */}
               <i className="formulario__validacion-estado">
                 <ion-icon name="close-circle-outline"></ion-icon>
@@ -114,9 +117,9 @@ function Form() {
               <input
                 className="formulario__input"
                 id="imagen"
-                name="imagen"
+                name="background_image"
                 type="text"
-                value={input.imagen}
+                value={input.background_image}
                 onChange={handleOnChange}
                 placeholder="https://www.google.com/..."
                 autoComplete="off"
@@ -267,9 +270,14 @@ function Form() {
 
           <div className="formulario__grupo formulario__grupo-btn-enviar">
             {/* {error.nombre ? null : <button type='submit' className='formulario__btn'>Enviar</button>} */}
+            <div className="onebtn">
             <button type="submit" className="formulario__btn">
               Enviar
             </button>
+            <Link to="/home" className='link_goBack'>
+              <button>Back to home</button>
+            </Link>
+            </div>
             <p className="formulario__mensaje-exito">
               Formulario enviado exitosamente
             </p>
