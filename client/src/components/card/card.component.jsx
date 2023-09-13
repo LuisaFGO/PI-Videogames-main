@@ -10,9 +10,9 @@ function Card({ game }) {
         <h2>{game.name}</h2>
         <div>
         <h4>Genres:</h4>
-        {game.genres.map((g) => {
-          return <p> ★ {g.name}</p>;
-        })}
+        {game.genres ? game.genres.map((g, index) => {
+          return <p key={index}> ★ {g.name}</p>;
+        }): null}
         </div>
       </Link>
     </div>

@@ -66,17 +66,17 @@ function Form() {
     e.preventDefault();
     await axios
       .post("http://localhost:3001/videogames", input)
-      .then((res) => alert(res))
-      .catch((err) => alert(err));
-    // setInput({
-    //   name: "",
-    //   imagen: "",
-    //   description: "",
-    //   platforms: "",
-    //   released: "",
-    //   rating: "",
-    //   genres: "",
-    // });
+      .then((res) => alert("¡Create done!"))
+      .catch((err) => alert("Check your details"));
+    setInput({
+      name: "",
+      background_image: "",
+      description: "",
+      platforms: "",
+      released: "",
+      rating: "",
+      genres: [],
+    });
   }
 
   return (
@@ -237,12 +237,14 @@ function Form() {
                 className="formulario__input"
                 id="genres"
                 name="genres"
+                type=""
                 value={input.genres}
                 onChange={handleOnChange}
                 placeholder="Action"
                 autoComplete="off"
               />
               {/* <select
+                multiple={true}
                 value={input.genres}
                 onChange={handleGenres}
                 className="formulario__input"

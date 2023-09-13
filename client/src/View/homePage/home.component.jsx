@@ -1,56 +1,63 @@
-import { useEffect,useState } from 'react';
-import { useDispatch, useSelector} from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import {getVideogames, getByName, setAllVideogames} from '../../redux/actions/index';
+import {
+  getVideogames,
+  getByName,
+  setAllVideogames,
+} from "../../redux/actions/index";
 
-import Cards from '../../components/cards/cards.component';
-import Navbar from '../../components/navbar/navbar.component';
+import Cards from "../../components/cards/cards.component";
+import Navbar from "../../components/navbar/navbar.component";
+// import Pagination from "../../components/pagination/pagination.components";
 
-import './home.styles.css';
+import "./home.styles.css";
 
 function Home() {
-
   const dispatch = useDispatch();
-  const videogames = useSelector((state)=> state.gamesCopy);
+  const videogames = useSelector((state) => state.gamesCopy);
 
-  // const [items, setItems] = useState([...videogames].splice(0, 15));
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [cardForPage] = useState(15);
 
-  // function nexHandler (){
-  //   console.log('next')
-  // }
+  // const paged = function (pageNumber) {
+  //   setCurrentPage(pageNumber);
+  // };
 
-  // function prevHandler(){
-  //   console.log('prev')
-  // }
-  
   const [searchString, setsearchString] = useState("");
 
-  function handleChange (e){
+  function handleChange(e) {
     e.preventDefault();
     setsearchString(e.target.value);
- } 
+  }
 
- function handleSubmit(e){
-  e.preventDefault();
-  dispatch(getByName(searchString));
-}
+  function handleSubmit(e) {
+    e.preventDefault();
+    dispatch(getByName(searchString));
+  }
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(getVideogames());
-  },[dispatch]);
+  }, [dispatch]);
 
-  function handleGetAll(e){
+  function handleGetAll(e) {
     dispatch(setAllVideogames());
   }
 
-    return (
-      <div className='home'>
-        <h2 className='home-title'>VIDEOGAMES</h2>
-        < Navbar handleChange = {handleChange} handleSubmit ={handleSubmit} handleGetAll={handleGetAll}/>
-        < Cards videogames={videogames}/>
-      </div>
-    );
-  }
-  
-  export default Home;
+  return (
+    <div className="home">
+      <h2 className="home-title">VIDEOGAMES</h2>
+      <Navbar
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        handleGetAll={handleGetAll}
+      />
+      <Cards videogames={videogames} />
+      {/* <Pagination
+        cardForPage={cardForPage} videogames={videogames.length} paged={paged} currentPage={currentPage}
+      /> */}
+    </div>
+  );
+}
 
+export default Home;

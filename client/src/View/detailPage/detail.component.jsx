@@ -16,19 +16,25 @@ function Detail() {
     dispatch(getByID(params.id));
   }, [dispatch]);
 
-  const fecha = new Date(videogame.released)
+  const fecha = new Date(videogame.released);
   const dia = fecha.getDate();
   const moth = fecha.getMonth();
   const year = fecha.getFullYear();
-  const released = `${dia}/${moth}/${year}`
+  const released = `${dia}/${moth}/${year}`;
+
   return (
     <div className="detail">
       <div>
         <div className="title_name">
-          <h2 >{videogame.id}</h2>
-          <h1 >{videogame.name}</h1>
+          <h2>{videogame.id}</h2>
+          <h1>{videogame.name}</h1>
         </div>
-        <img src={videogame.background_image} alt="PhotoDetail" width="55%" className="img"/>
+        <img
+          src={videogame.background_image}
+          alt="PhotoDetail"
+          width="55%"
+          className="img"
+        />
         <div>
           <h4>Platforms</h4>
           <p>{videogame.platforms}</p>
@@ -45,7 +51,13 @@ function Detail() {
         </p>
         <div>
           <h4>Genres</h4>
-          <p>{videogame.genres}</p>
+          {videogame.created ? (
+            videogame.genres.map((g, index) => {
+              return <p key={index}>{g.name}</p>;
+            })
+          ) : (
+            <p>{videogame.genres}</p>
+          )}
         </div>
         <NavLink to="/home">
           <button className="btn">Volver</button>

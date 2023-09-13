@@ -14,8 +14,6 @@ function Cards({videogames}) {
           game= {game}
           />
         ))};
-        {/* <button onClick={gamesList.prevHandler}>Prev</button>
-        <button onClick={gamesList.nexHandler}>Next</button> */}
       </div>
     );
   }
