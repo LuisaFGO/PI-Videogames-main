@@ -88,7 +88,14 @@ const getAllGame = async () => {
 };
 
 const getGameByName = async (name) => {
-  const gameBd = await Videogames.findAll({ where: { name: name } });
+  const gameBd = await Videogames.findAll({ 
+    where: { name: name },
+    include: {
+      model: Genres,
+      attributes: ["name"],
+      through: { attributes: [] },
+    },
+   });
   const getName = (
     await axios.get(
       `https://api.rawg.io/api/games?search=${name}&key=${API_KEY}&pageSize=15`
@@ -100,7 +107,7 @@ const getGameByName = async (name) => {
   );
   const result = [...gamesFilter, ...gameBd];
   if (!result.length)
-    return { message: `Dont found a videogame with name:🥴 '${nombre}' 🥴.` };
+    return { message: `Dont found a videogame with name:🥴 '${name}' 🥴.` };
   else return result;
 };
 
