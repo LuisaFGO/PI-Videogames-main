@@ -6,6 +6,10 @@ export const GET_BY_ID = "GET_BY_ID";
 export const SET_ALL_VIDEOGAMES = "SET_ALL_VIDEOGAMES";
 export const GET_PLATFORMS = "GET_PLATFORMS";
 export const GET_GENRES = "GET_GENRES";
+export const GET_GENRES_FILTER = "GET_GENRES_FILTER";
+export const ORIGIN_FILTER = "ORIGIN_FILTER";
+export const RATING_FILTER = "RATING_FILTER";
+export const AZ_FILTER = "AZ_FILTER;"
 
 export function getVideogames(){
     return async function(dispatch){
@@ -46,7 +50,7 @@ export function getByID(id){
   };
 }
 
-export function getgenres(){
+export function getGenres(){
   return async function(dispatch){
       const response = await axios.get(`http://localhost:3001/genres`);
       return dispatch({
@@ -54,4 +58,32 @@ export function getgenres(){
           payload: response.data
       })
   };
+}
+
+export function getGenresfilter(payload) {
+  return {
+      type: "GET_GENRES_FILTER",
+      payload
+  }
+}
+
+export function getOriginFilter(payload) { 
+  return {
+      type: 'ORIGIN_FILTER',
+      payload
+  }
+}
+
+export function getRatingFilter(payload) {
+  return {
+      type: 'RATING_FILTER',
+      payload
+  }
+}
+
+export function getAZFilter(payload) { 
+  return {
+      type: 'AZ_FILTER',
+      payload
+  }
 }

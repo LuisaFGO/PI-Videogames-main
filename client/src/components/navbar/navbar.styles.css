@@ -17,3 +17,12 @@
     flex-direction: row;
     gap: 10px;
 }
+
+.select_filters{
+    cursor: pointer;
+    text-align: center;
+    margin-top: 4px;
+    margin-left: 2px;
+    font-size: 17px;
+    border-radius: 5px;
+}

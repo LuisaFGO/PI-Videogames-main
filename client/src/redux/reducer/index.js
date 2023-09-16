@@ -3,7 +3,11 @@ import {
   GET_BY_NAME,
   GET_BY_ID,
   SET_ALL_VIDEOGAMES,
-  GET_GENRES
+  GET_GENRES,
+  GET_GENRES_FILTER,
+  ORIGIN_FILTER,
+  RATING_FILTER,
+  AZ_FILTER,
 } from "../actions/index";
 
 let initialState = {
@@ -40,6 +44,79 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         genres: action.payload,
+      };
+    case GET_GENRES_FILTER:
+      const videogames = state.videogames;
+      const genreFilter =
+        action.payload === "All"
+          ? state.gamesCopy
+          : videogames.filter((game) => {
+              return game.genres.find((game) => {
+                return game.name === action.payload;
+              });
+            });
+      return {
+        ...state,
+        videogames: genreFilter,
+      };
+    case ORIGIN_FILTER:
+      const originFilter =
+        action.payload === "Created"
+          ? state.gamesCopy.filter((origin) => origin.created)
+          : state.gamesCopy.filter((origin) => !origin.created);
+      return {
+        ...state,
+        videogames: action.payload === "All" ? state.gamesCopy : originFilter,
+      };
+    case RATING_FILTER:
+      let rating =
+        action.payload === "Minor"
+          ? state.videogames.sort(function (a, b) {
+              if (a.rating > b.rating) {
+                return 1;
+              }
+              if (b.rating > a.rating) {
+                return -1;
+              }
+              return 0;
+            })
+          : state.videogames.sort(function (a, b) {
+              if (a.rating > b.rating) {
+                return -1;
+              }
+              if (b.rating > a.rating) {
+                return 1;
+              }
+              return 0;
+            });
+      return {
+        ...state,
+        videogames: rating,
+      };
+    case AZ_FILTER:
+      let azfilter =
+        action.payload === "Asc"
+          ? state.videogames.sort(function (a, b) {
+              if (a.name > b.name) {
+                return 1;
+              }
+              if (b.name > a.name) {
+                return -1;
+              }
+              return 0;
+            })
+          : state.videogames.sort(function (a, b) {
+              if (a.name > b.name) {
+                return -1;
+              }
+              if (b.name > a.name) {
+                return 1;
+              }
+              return 0;
+            });
+      return {
+        ...state,
+        videogames: azfilter,
       };
     default:
       return state;

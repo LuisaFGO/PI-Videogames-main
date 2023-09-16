@@ -59,6 +59,9 @@ function Detail() {
             <p>{videogame.genres}</p>
           )}
         </div>
+        <div>
+        {videogame.created? <p><h4>Autor</h4>{videogame.autor}</p> : null }
+        </div>
         <NavLink to="/home">
           <button className="btn">Volver</button>
         </NavLink>

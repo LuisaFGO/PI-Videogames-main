@@ -16,6 +16,7 @@ function Form() {
     released: "",
     rating: "",
     genres: [],
+    autor: "",
   });
 
   const [errors, setErrors] = useState({
@@ -26,6 +27,7 @@ function Form() {
     released: "",
     rating: "",
     genres: [],
+    autor: "",
   });
 
   //   function handleGenres(e) {
@@ -76,6 +78,7 @@ function Form() {
       released: "",
       rating: "",
       genres: [],
+      autor: "",
     });
   }
 
@@ -227,6 +230,23 @@ function Form() {
               </p>
             </div>
           </div>
+          <div className="formulario__grupo">
+            <label htmlFor="autor" className="formulario__label">
+              Autor
+            </label>
+            <div className="formulario__grupo-input">
+              <input
+                className="formulario__input"
+                id="autor"
+                name="autor"
+                type="text"
+                value={input.autor}
+                onChange={handleOnChange}
+                placeholder="Luisa G"
+                autoComplete="off"
+              />
+            </div>
+          </div>
 
           <div className="formulario__grupo">
             <label htmlFor="genres" className="formulario__label">
@@ -273,12 +293,12 @@ function Form() {
           <div className="formulario__grupo formulario__grupo-btn-enviar">
             {/* {error.nombre ? null : <button type='submit' className='formulario__btn'>Enviar</button>} */}
             <div className="onebtn">
-            <button type="submit" className="formulario__btn">
-              Enviar
-            </button>
-            <Link to="/home" className='link_goBack'>
-              <button>Back to home</button>
-            </Link>
+              <button type="submit" className="formulario__btn">
+                Enviar
+              </button>
+              <Link to="/home" className="link_goBack">
+                <button>Back to home</button>
+              </Link>
             </div>
             <p className="formulario__mensaje-exito">
               Formulario enviado exitosamente
