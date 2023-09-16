@@ -11,7 +11,8 @@ const createGameDb = async (
   background_image,
   released,
   rating,
-  genres
+  genres,
+  autor,
 ) => {
   const newGame = await Videogames.create({
     name,
@@ -20,6 +21,7 @@ const createGameDb = async (
     background_image,
     released,
     rating,
+    autor
   });
   let checkGenres = [];
   for (let ele of genres) {
@@ -80,9 +82,23 @@ const getAllGame = async () => {
       through: { attributes: [] },
     },
   });
-  const infoApi = (
-    await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&number=100`)
-  ).data.results;
+  // const infoApi = (
+  //   await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page_size=100`)
+  // ).data.results;
+  let infoApi = [];
+
+const api1 = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=1`)
+const api2 = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=2`)
+const api3 = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=3`)
+const api4 = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=4`)
+const api5 = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=5`)
+
+infoApi = api1.data.results.concat(
+        api2.data.results,
+        api3.data.results,
+        api4.data.results,
+        api5.data.results,
+    );
   const gamesApi = cleanGames(infoApi);
   return [...gamesBD, ...gamesApi];
 };
