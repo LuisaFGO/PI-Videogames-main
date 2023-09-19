@@ -46,15 +46,10 @@ function rootReducer(state = initialState, action) {
         genres: action.payload,
       };
     case GET_GENRES_FILTER:
-      const videogames = state.videogames;
+      const videogames = [...state.gamesCopy];
       const genreFilter =
-        action.payload === "All"
-          ? state.gamesCopy
-          : videogames.filter((game) => {
-              return game.genres.find((game) => {
-                return game.name === action.payload;
-              });
-            });
+        action.payload === "All" ? [...state.videogames]
+          : videogames.filter(game=> game.genres.some(item => item.name.toLowerCase() === action.payload))
       return {
         ...state,
         videogames: genreFilter,

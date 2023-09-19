@@ -21,9 +21,11 @@ import "./home.styles.css";
 function Home() {
   const dispatch = useDispatch();
   const videogames = useSelector((state) => state.gamesCopy);
+  const genres = useSelector((state) => state.genres);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [cardForPage] = useState(15);
+
 
   const indexOfLastVideogame = currentPage * cardForPage;
   const indexOfFirstVideogame = indexOfLastVideogame - cardForPage;
@@ -53,6 +55,7 @@ function Home() {
   useEffect(() => {
     dispatch(getGenres());
   }, [dispatch]);
+
 
   useEffect(() => {
     dispatch(getVideogames());
@@ -98,6 +101,7 @@ function Home() {
         handleOriginFilter={handleOriginFilter}
         handleRatingFilter={handleRatingFilter}
         handleAZFilter={handleAZFilter}
+        genres ={genres}
       />
       <ul>
         <Cards videogames={currentVideogames} />

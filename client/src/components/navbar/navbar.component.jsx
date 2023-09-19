@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./navbar.styles.css";
 
@@ -10,8 +9,8 @@ function Navbar({
   handleOriginFilter,
   handleRatingFilter,
   handleAZFilter,
+  genres
 }) {
-  const genres = useSelector((state) => state.genres);
 
   return (
     <div className="search-box">
@@ -28,7 +27,7 @@ function Navbar({
         <button>Create Videogame</button>
       </Link>
       <div className="select_filters">
-        <select className="select_genre" onChange={(e) => handleGenreFilter(e)}>
+        <select className="select_genre" onChange={(e)=> handleGenreFilter(e)}>
           <option>Select a Genre</option>
           <option value="All">All</option>
           {genres.map((genre) => (
