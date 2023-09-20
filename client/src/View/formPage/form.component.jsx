@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-// import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 import axios from "axios";
 
 import "./form.styles.css";
 
 function Form() {
-  // let allgenres = useSelector((state) => state.genres)
+  const allgenres = useSelector((state) => state.genres);
 
   const [input, setInput] = useState({
     name: "",
@@ -30,12 +30,16 @@ function Form() {
     autor: "",
   });
 
-  //   function handleGenres(e) {
-  //     setInput({
-  //       ...input,
-  //       genres: [...input.genres,e.target.value]
-  //     })
-  //  }
+  function handleGenres(e) {
+    var options = e.target.options;
+    var value = [];
+    for (var i = 0, l = options.length; i < l; i++) {
+      if (options[i].selected) {
+        value.push(options[i].value);
+      }
+    }
+    setInput(prevState => ({...prevState, genres: value}));
+  }
 
   function handleOnChange(e) {
     setInput({
@@ -253,7 +257,7 @@ function Form() {
               Genres
             </label>
             <div className="formulario__grupo-input">
-              <input
+              {/* <input
                 className="formulario__input"
                 id="genres"
                 name="genres"
@@ -262,20 +266,20 @@ function Form() {
                 onChange={handleOnChange}
                 placeholder="Action"
                 autoComplete="off"
-              />
-              {/* <select
+              /> */}
+              <select
                 multiple={true}
-                value={input.genres}
                 onChange={handleGenres}
                 className="formulario__input"
                 id="genres"
                 name="genres"
-              > <option value="">Select Genres</option>
-                {allgenres.map((g) => {
-                  return <option value={g}>{g}</option>;
-                })}
+              >
+                {allgenres.map((g) => (
+                  <option key={g.id} value={g.name}>
+                    {g.name}
+                  </option>
+                ))}
               </select>
-              <ul ><li>{input.genres.map(g => g + ' ,')}</li></ul>  */}
               <i className="formulario__validacion-estado">
                 <ion-icon name="close-circle-outline"></ion-icon>
               </i>

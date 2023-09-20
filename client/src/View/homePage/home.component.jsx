@@ -33,7 +33,6 @@ function Home() {
     indexOfFirstVideogame,
     indexOfLastVideogame
   );
-
   // const [orderly, setOrderly] = useState("");
 
   const paged = function (pageNumber) {

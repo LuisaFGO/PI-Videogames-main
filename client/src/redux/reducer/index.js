@@ -52,7 +52,7 @@ function rootReducer(state = initialState, action) {
           : videogames.filter(game=> game.genres.some(item => item.name.toLowerCase() === action.payload))
       return {
         ...state,
-        videogames: genreFilter,
+        gamesCopy: genreFilter,
       };
     case ORIGIN_FILTER:
       const originFilter =
@@ -61,57 +61,27 @@ function rootReducer(state = initialState, action) {
           : state.gamesCopy.filter((origin) => !origin.created);
       return {
         ...state,
-        videogames: action.payload === "All" ? state.gamesCopy : originFilter,
+        gamesCopy: action.payload === "All" ? [...state.videogames] : originFilter,
       };
     case RATING_FILTER:
-      let rating =
+      const rating =
         action.payload === "Minor"
-          ? state.videogames.sort(function (a, b) {
-              if (a.rating > b.rating) {
-                return 1;
-              }
-              if (b.rating > a.rating) {
-                return -1;
-              }
-              return 0;
-            })
-          : state.videogames.sort(function (a, b) {
-              if (a.rating > b.rating) {
-                return -1;
-              }
-              if (b.rating > a.rating) {
-                return 1;
-              }
-              return 0;
-            });
+          ? state.gamesCopy.sort((a,b)=> a.rating - b.rating)
+          : state.gamesCopy.sort((a,b)=> b.rating - a.rating)
       return {
         ...state,
-        videogames: rating,
+        gamesCopy: [...rating],
       };
     case AZ_FILTER:
-      let azfilter =
+      console.log("Hola mundo")
+      const azfilter =
         action.payload === "Asc"
-          ? state.videogames.sort(function (a, b) {
-              if (a.name > b.name) {
-                return 1;
-              }
-              if (b.name > a.name) {
-                return -1;
-              }
-              return 0;
-            })
-          : state.videogames.sort(function (a, b) {
-              if (a.name > b.name) {
-                return -1;
-              }
-              if (b.name > a.name) {
-                return 1;
-              }
-              return 0;
-            });
+          ? state.gamesCopy.sort((a,b) => b.name.localeCompare(a.name))
+          : state.gamesCopy.sort((a,b)=> a.name.localeCompare(b.name))
+          console.log(azfilter)
       return {
         ...state,
-        videogames: azfilter,
+        gamesCopy: [...azfilter],
       };
     default:
       return state;
