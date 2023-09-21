@@ -7,7 +7,7 @@ import {
   GET_GENRES_FILTER,
   ORIGIN_FILTER,
   RATING_FILTER,
-  AZ_FILTER,
+  NAME_FILTER,
 } from "../actions/index";
 
 let initialState = {
@@ -72,13 +72,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         gamesCopy: [...rating],
       };
-    case AZ_FILTER:
-      console.log("Hola mundo")
+    case NAME_FILTER:
       const azfilter =
         action.payload === "Asc"
-          ? state.gamesCopy.sort((a,b) => b.name.localeCompare(a.name))
-          : state.gamesCopy.sort((a,b)=> a.name.localeCompare(b.name))
-          console.log(azfilter)
+          ? state.gamesCopy.sort((a,b) => a.name.localeCompare(b.name))
+          : state.gamesCopy.sort((a,b)=> b.name.localeCompare(a.name))
       return {
         ...state,
         gamesCopy: [...azfilter],

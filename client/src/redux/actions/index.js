@@ -9,7 +9,7 @@ export const GET_GENRES = "GET_GENRES";
 export const GET_GENRES_FILTER = "GET_GENRES_FILTER";
 export const ORIGIN_FILTER = "ORIGIN_FILTER";
 export const RATING_FILTER = "RATING_FILTER";
-export const AZ_FILTER = "AZ_FILTER;"
+export const NAME_FILTER = "NAME_FILTER";
 
 export function getVideogames(){
     return async function(dispatch){
@@ -83,7 +83,7 @@ export function getRatingFilter(payload) {
 
 export function getAZFilter(payload) { 
   return {
-      type: 'AZ_FILTER',
+      type: 'NAME_FILTER',
       payload
   }
 }

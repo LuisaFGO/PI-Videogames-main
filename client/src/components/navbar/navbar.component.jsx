@@ -27,7 +27,7 @@ function Navbar({
         <button>Create Videogame</button>
       </Link>
       <div className="select_filters">
-        <select className="select_genre" onChange={(e)=> handleGenreFilter(e)}>
+        <select className="select_f" onChange={(e)=> handleGenreFilter(e)}>
           <option>Select a Genre</option>
           <option value="All">All</option>
           {genres.map((genre) => (
@@ -38,7 +38,7 @@ function Navbar({
         </select>
 
         <select
-          className="select_origin"
+          className="select_f"
           onChange={(e) => handleOriginFilter(e)}
         >
           <option>Select an Origin</option>
@@ -48,7 +48,7 @@ function Navbar({
         </select>
 
         <select
-          className="select_rating"
+          className="select_f"
           onChange={(e) => handleRatingFilter(e)}
         >
           <option>Select a Rating</option>
@@ -56,7 +56,7 @@ function Navbar({
           <option value="Minor">Rating Minor</option>
         </select>
 
-        <select className="select_az" onChange={(e) => handleAZFilter(e)}>
+        <select className="select_f" onChange={(e) => handleAZFilter(e)}>
           <option>Select an Order</option>
           <option value="Asc">A-Z</option>
           <option value="Desc">Z-A</option>
